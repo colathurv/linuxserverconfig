@@ -132,9 +132,12 @@ To                         Action      From
 123/udp (v6)               ALLOW IN    Anywhere (v6)
 ```
 ## Step 4. Setup UTC.
-Comments - As grader user set up UTC as follows and in the dialog choose US/Pacific-New
+Comments - As grader user set up UTC as follows and in the dialog choose "None of the Above" for Geographic area and choose UTC in the next prompt.
+           Do a check to make sure that you get the date fixed.
 ```
 grader@ip-10-20-40-234:~$ sudo dpkg-reconfigure tzdata
+grader@ip-10-20-40-234:/var/www/catalog/catalog$ date
+Sun Dec 27 01:35:37 UTC 2015
 ```
 ## Step 5. Install ntp, apache2 and mod_wsgi.
 Comments - As grader user install ntp
@@ -508,7 +511,9 @@ CLIENT_ID = json.loads(
 
     oauth_flow = flow_from_clientsecrets(APP_PATH + 'client_secrets.json', scope='')
 ```
-Third, bounce apache with a  
+Third , make sure to set debug as False in main of __init__.py fileand and make sure there is a route for / 
+
+Fourth, bounce apache with a  
 ```
 sudo service apache2 restart
 ```
